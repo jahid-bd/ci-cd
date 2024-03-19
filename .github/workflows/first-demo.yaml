@@ -1,26 +1,26 @@
-name : "First Demo Actoin"
+name: 'First Demo Action'
 
-on: 
+on:
   push:
     branches:
-    - main
+      - main
 
 jobs:
   demo-job:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Action Started"
+      - name: Action Started
+        run: echo "Action Started"
       - name: Checkout
         uses: actions/checkout@v4
       - name: Run a one-line test
         run: echo "Hello World"
       - name: Run a multiple-line test
-      - run: |
-          echo Add other actions to build,run: echo "
-          echo "Hello World
+        run: |
+          echo "Hello World"
       - name: List files
         run: ls ${{ github.workspace }}
-      env: 
-        GITHUB_CONTEXT: ${{ toJson(github) }}
-      - run: echo "$GITHUB_CONTEXT"
-      
+      - name: Display GitHub context
+        run: echo "${GITHUB_CONTEXT}"
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
